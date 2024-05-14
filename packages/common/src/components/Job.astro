@@ -1,0 +1,23 @@
+---
+import { formatDate } from "../utils"
+import { type JobView } from "../content/types"
+interface Props {
+  job: JobView
+}
+
+const { job } = Astro.props
+---
+
+<article class="heti">
+  <header>
+    <h2 class="post-title!">
+      <span>{job.title} - {job.company}</span>
+    </h2>
+    <div class="mt-2 text-3.5">
+      <time>{formatDate(job.started)} - </time>
+      <time>{job?.ended ? formatDate(job.ended) : "Current"}</time>
+    </div>
+  </header>
+  <slot name="technologies"/>
+  <slot name="content"/>
+</article>

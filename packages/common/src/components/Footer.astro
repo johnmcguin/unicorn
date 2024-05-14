@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'footer'>
+
+const { ...attrs } = Astro.props
+---
+
+<footer font-bold text-3 un-flex="~ col gap-1" un-lg="gap-3.5" {...attrs}>
+  <p>
+    Base Theme:
+    <a target="_blank" href="https://github.com/Moeyua/astro-theme-typography" rel="noopener noreferrer">Typography</a>
+     by <a target="_blank" href="https://moeyua.com" rel="noopener noreferrer">Moeyua</a>
+  </p>
+</footer>
+<style>
+footer {
+  display: none;
+}
+</style>

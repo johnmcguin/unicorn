@@ -1,0 +1,20 @@
+{
+  "name": "unicorn",
+  "version": "0.1.0",
+  "description": "Unicorn is a monorepo template to deploy Cloudflare Pages websites to go alongside job applications.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "job application",
+    "job hunt",
+    "job search",
+    "cloudflare pages"
+  ],
+  "author": "John McGuin <john@waysoftware.dev>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "sites/*"
+  ]
+}

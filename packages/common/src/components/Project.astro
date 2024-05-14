@@ -1,0 +1,25 @@
+---
+import type { ProjectView } from "../content/types"
+interface Props {
+  project: ProjectView
+}
+
+const { project } = Astro.props
+---
+
+<article class="heti">
+  <header>
+    <h2 class="post-title!">
+      <span>{project.title}</span>
+    </h2>
+    <p class="font-italic text-3.5">
+      {project.description}
+    </p>
+  </header>
+
+  <slot name="repo"/>
+  {project.technologies?.length && (
+    <span class="font-size-xs">Technologies: {project.technologies.join(", ")} </span>
+  )}
+  <slot name="content"/>
+</article>
