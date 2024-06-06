@@ -1,7 +1,7 @@
 # Unicorn
 
 <p align="center">
-  <img src="./assets/unicorn_demo.png" alt="Demo Site" width="600"/>
+  <img src="./assets/unicorn.png" alt="Demo Site" width="600"/>
 </p>
 
 <h6 align="center">
