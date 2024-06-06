@@ -1,5 +1,16 @@
 # Unicorn
 
+<p align="center">
+  <img src="./assets/unicorn_demo.png" alt="Demo Site" width="600"/>
+</p>
+
+<h6 align="center">
+    <a href="https://unicorn-demo.pages.dev/">Live Demo</a>
+</h6>
+<h5 align='center'>
+    <b>This work is rewrite from <a href="https://github.com/moeyua/astro-theme-typography/">Typography</a></b>
+</h5>
+
 Unicorn is a monorepo to make it easier to deploy websites alongside your job applications allowing you to customize your pages and content to the specific job opportunity. Unicorn provides a GitHub Action that will deploy your sites as Cloudflare Pages.
 
 Now go show your prospective employers what a special unicorn you are.
@@ -39,4 +50,4 @@ where `unicorn-demo` is the name of the site you're targeting.
 
 ## Thanks
 
-This project is a minimal fork off of the [Typography](https://github.com/Moeyua/astro-theme-typography) by [Moeyua](https://github.com/Moeyua). Thanks for the design Moeyua!
+This project is a minimal fork off of the [Typography](https://github.com/Moeyua/astro-theme-typography) by [Moeyua](https://github.com/Moeyua).
