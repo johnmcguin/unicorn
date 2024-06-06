@@ -46,7 +46,7 @@ where `unicorn-demo` is the name of the site you're targeting.
 
 1. Copy the token from the previous step and add it as a GitHub secret called `DEPLOY_TOKEN` in your repo.
 2. Navigate to the "Workers & Pages" tab. Here you should find your account id. Copy that and add it to your repo as a secret called `CLOUDFLARE_ACCOUNT_ID`.
-3. While here, create your first site. Select "create application". Select "Pages" tab. Select "Create using direct upload". Select "Upload assets", although we will be skipping the actual upload of assets (the GH action workflow will do this for us, we just need to create the pages "project" at this point). Give the project a name, and select "Create project" without uploading assets. Take note of the project name you provided. We will use this within the [GitHub action](./.github/workflows/publish.yml#L14).
+3. While here, create your first site. Select "create application". Select "Pages" tab. Select "Create using direct upload". Select "Upload assets", although we will be skipping the actual upload of assets (the GH action workflow will do this for us, we just need to create the pages "project" at this point). Give the project a name, and select "Create project" without uploading assets. Take note of the project name you provided. Update the [GitHub action](./.github/workflows/publish.yml#L14) with this value.
 
 ## Thanks
 
