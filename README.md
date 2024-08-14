@@ -35,6 +35,8 @@ where `unicorn-demo` is the name of the site you're targeting.
 
 ## Deployment Instructions
 
+Additional notes / instructions can be found in [this blog post](https://blog.waysoftware.dev/)
+
 ### Create A Cloudflare API Key
 
 1. In your Cloudflare account, navigate to "Profile" -> "API Tokens" -> "Create Token"
