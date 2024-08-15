@@ -1,0 +1,45 @@
+---
+import LayoutDefault from '@unicorn/common/src/layouts/layout.astro'
+import { getCollection, getEntry } from 'astro:content';
+import Project from '@unicorn/common/src/components/Project.astro'
+
+const projects = await getCollection("projects")
+  .then(async projects => {
+    const promises = projects.map(async project=> {
+      const entry = await getEntry("projects", project.slug);
+      const rendered = await entry.render()
+      return {
+        ...project,
+        rendered
+      }
+    })
+    return Promise.all(promises);
+  })
+---
+
+<LayoutDefault>
+
+  <section class="heti" contain-layout un-flex="~ col gap-7.5">
+    <p>
+    Below are some public projects I have. Some are libraries, some fun projects. I also have a few apps I keep 
+    private but would be glad to grant access to them upon request or give tours, etc.
+    </p>
+    <article>
+    {
+      projects.map((project) => {
+        return <Project project={{
+          title: project.data.title,
+          description: project.data.description,
+          technologies: project.data.technologies
+          
+        }}>
+          {project.rendered.remarkPluginFrontmatter?.repo && (<div slot="repo">
+            <span class="font-size-xs">Repo: <a href={project.rendered.remarkPluginFrontmatter.repo} target="_blank">{project.rendered.remarkPluginFrontmatter.repo}</a></span>
+          </div>)}
+          <project.rendered.Content slot="content" />
+        </Project>
+      })
+    }
+    </article>
+  </section>
+</LayoutDefault>

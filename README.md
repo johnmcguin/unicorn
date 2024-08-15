@@ -17,7 +17,13 @@ Now go show your prospective employers what a special unicorn you are.
 
 To use this monorepo, you'll need a Cloudflare account.
 
-## Running A Site
+## Installation
+
+To use this monorepo, click "use this template" in the upper right corner of GitHub.
+
+## Usage
+
+### Running A Site
 
 After creating a repo from the template, `cd` into your project directory and run
 
@@ -33,9 +39,31 @@ npm run dev -w ./sites/unicorn-demo
 
 where `unicorn-demo` is the name of the site you're targeting.
 
-## Deployment Instructions
+### Adding A Site
 
-Additional notes / instructions can be found in [this blog post](https://blog.waysoftware.dev/)
+There is a utility script for doing most of the work for creating a new website. It can be found and edited at `/scripts/new_site.mjs`. It is designed for my own use but is heavily commented and should be able to be adapted for your use if needed. Run the script with:
+
+```bash
+npm run new -- --dir google -c Google -j "Senior Software Engineer (Fullstack)"
+```
+
+- Where --dir is the name of the directory where the project will live in the monorepo. The script will copy the template directory into the directory that you pass in here.
+- And -c is the company name of the company you're applying to. The script will find and replace references to "Company", a generic placeholder that the template project uses, to the value you pass in here.
+- and where -j is the job title you are applying for. The script will find and replace references to "Job Title", a generic placeholder that the template project uses, to the value you pass in here.
+
+Taking all this in mind, it will make sense to customize the template project with your copy to minimize the amount of work needed after creating a new site. Just make sure to either adopt these conventions when copywriting or refactor the script to suit your needs.
+
+If needed, consult the CLI help docs with:
+
+After you've run the script, be sure to follow the instructions at the end of the CLI. Notably, ensure adding your project to Cloudflare Pages and adding the deployment job to the GitHubAction workflow at `.github/workflows/publish.yml`.
+
+```bash
+npm run new -- --help
+```
+
+## Deployment
+
+Additional notes / instructions can be found in [this blog post](https://blog.waysoftware.dev/blog/unicorn/)
 
 ### Create A Cloudflare API Key
 
@@ -49,6 +77,16 @@ Additional notes / instructions can be found in [this blog post](https://blog.wa
 1. Copy the token from the previous step and add it as a GitHub secret called `DEPLOY_TOKEN` in your repo.
 2. Navigate to the "Workers & Pages" tab. Here you should find your account id. Copy that and add it to your repo as a secret called `CLOUDFLARE_ACCOUNT_ID`.
 3. While here, create your first site. Select "create application". Select "Pages" tab. Select "Create using direct upload". Select "Upload assets", although we will be skipping the actual upload of assets (the GH action workflow will do this for us, we just need to create the pages "project" at this point). Give the project a name, and select "Create project" without uploading assets. Take note of the project name you provided. Update the [GitHub action](./.github/workflows/publish.yml#L14) with this value.
+
+## Upstream Changes
+
+Occasionally, this project may get updated. If you want to receive these changes, please create an upstream remote origin pointing to this template and merge changes as needed.
+
+```bash
+git remote add template https://github.com/johnmcguin/unicorn.git
+git fetch --all
+git merge template/main --allow-unrelated-histories
+```
 
 ## Thanks
 

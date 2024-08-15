@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+
+import LayoutDefault from '@unicorn/common/src/layouts/layout.astro'
+import Job from '@unicorn/common/src/components/Job.astro'
+import { getEntry } from 'astro:content';
+
+const jobs = await getCollection("jobs")
+  .then(jobs => {
+    return jobs.sort((a,b) => {
+      if (!a.data.ended) return -1;
+      if (b.data?.ended && a.data?.ended > b.data?.ended) return -1;
+      if (a.data?.ended === b.data?.ended) return 0;
+      return 1;
+    })
+  })
+  .then(async jobs => {
+    const promises = jobs.map(async job=> {
+      const entry = await getEntry("jobs", job.slug);
+      const rendered = await entry.render()
+      return {
+        ...job,
+        rendered
+      }
+    })
+    return Promise.all(promises);
+  })
+
+---
+
+<LayoutDefault>
+  <section class="heti" contain-layout un-flex="~ col gap-7.5">
+    <p>
+    I hope that this page will tell a little bit of a story about my professional journey,
+    and answer questions about my role changes and motivations. Please consult my <a href="/resume.pdf">resume</a>
+    for more succinct, bulleted information about these roles.
+    </p>
+    {
+      jobs.map((job) => {
+        return <Job job={{
+          title: job.data.title,
+          started: job.data.started,
+          ended: job.data.ended,
+          description: job.data.description,
+          company: job.data.company,
+          technologies: job.data.technologies
+          
+        }}>
+          {job.rendered.remarkPluginFrontmatter?.technologies?.length && (<div slot="technologies">
+            <span class="font-size-xs">Technologies: {job.rendered.remarkPluginFrontmatter.technologies.join(", ")} </span>
+          </div>)}
+          <job.rendered.Content slot="content" />
+        </Job>
+      })
+    }
+  </section>
+</LayoutDefault>

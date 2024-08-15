@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Unicorn is a monorepo template to deploy Cloudflare Pages websites to go alongside job applications.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "new": "scripts/new_site.mjs new"
   },
   "keywords": [
     "job application",
@@ -16,5 +17,10 @@
   "workspaces": [
     "packages/*",
     "sites/*"
-  ]
+  ],
+  "devDependencies": {
+    "commander": "^12.1.0",
+    "ora": "^8.0.1",
+    "rimraf": "^6.0.1"
+  }
 }
