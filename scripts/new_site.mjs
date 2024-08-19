@@ -55,6 +55,11 @@ program
       await execP(
         `grep -rl 'Job Title' "sites/${dir}/" | xargs sed -i.bak "s/Job Title/${job}/g"`
       );
+      /**
+       * Remove the .bak files that sed had to create (workaround for
+       * OSX vs Linux differences in sed behavior
+       * */
+      await execP('find . -type f -name "*.bak" | xargs rm');
       renameCopyJob.succeed("Renamed the copy");
 
       /**
