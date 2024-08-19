@@ -41,9 +41,7 @@ program
        * Rename the project. Rename the package in the monorepo.
        * */
       const renameJob = ora("Renaming the project...").start();
-      await execP(
-        `sed -i.bak "s/template/${company}/g" sites/${dir}/package.json`
-      );
+      await execP(`sed -i.bak "s/template/${dir}/g" sites/${dir}/package.json`);
       renameJob.succeed("Renamed the project");
 
       /**
