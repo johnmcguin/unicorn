@@ -3,21 +3,71 @@ on:
     branches: [main]
 
 jobs:
+  prepare:
+    name: Prepare Matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{steps.matrix.outputs.matrix}}
+      continue: ${{steps.matrix.outputs.continue}}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - run: echo "SITES=$(jq -c . < sites.json)" >> $GITHUB_ENV
+
+      - name: Packages Changed
+        id: changes
+
+        with:
+          list-files: shell
+          filters: |
+            deps:
+              - 'package.json'
+            sites:
+              - 'sites/!(template/**)/**'
+            packages:
+              - 'packages/**'
+        uses: dorny/paths-filter@v3
+
+      - name: Debug paths-filter
+        run: |
+          echo "sites files changed: ${{ steps.changes.outputs.sites_files }}"
+
+      - name: Transform Sites Changed
+        id: transformed-changes
+        run: |
+          sites=()
+
+          for filepath in ${{ steps.changes.outputs.sites_files }}; do
+              dir=$(echo "$filepath" | cut -d'/' -f2)
+              sites+=("$dir")
+          done
+
+          unique_sites=($(printf "%s\n" "${sites[@]}" | sort -u))
+          echo "SITES_CHANGED=${unique_sites[@]}" >> $GITHUB_ENV
+
+      - name: Build Dynamic Matrix
+        if: ${{ steps.changes.outputs.sites }}
+        id: matrix
+        run: |
+          if [[ ${{ steps.changes.outputs.packages }} == true ]] || [[ ${{ steps.changes.outputs.deps }} == true ]]; then
+            node ./scripts/build_matrix.mjs --all
+            echo "continue=true" >> $GITHUB_OUTPUT
+          elif [[ ${{ steps.changes.outputs.sites }} == true ]]; then
+            node ./scripts/build_matrix.mjs
+            echo "continue=true" >> $GITHUB_OUTPUT
+          else
+            # successful step, but do not continue with a deployment
+            echo "continue=false" >> $GITHUB_OUTPUT
+          fi
+
   publish:
+    needs: prepare
     name: Publish to Cloudflare Pages
+    if: ${{ needs.prepare.outputs.continue == 'true' }}
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        include:
-          # "project" here corresponds to the name of your project within Cloudflare
-          # "package" here refers to the name of the site as it is in the monorepo. "project" and "package" may not always be the same
-          - project: unicorn-demo
-            package: unicorn-demo
-          # Deploy multiple sites by adding more matrix entries following this syntax:
-          # - project: another-project
-          #   package: another-package
-          # - project: third-project
-          #   package: third-package
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
 
     permissions:
       contents: read
