@@ -2,7 +2,7 @@ export const THEME_CONFIG: App.Locals["config"] = {
   title: "Company x Me",
   company: "Company",
   yoe: 9,
-  name: "Testing",
+  name: "Me",
   desc: "Me's application for Company",
   website: "https://example.com",
   themeStyle: "light",
