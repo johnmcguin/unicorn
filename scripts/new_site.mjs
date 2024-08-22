@@ -82,7 +82,7 @@ program
       You're not done yet!
       1. Make sure your DNS is setup correctly if you are deploying to a custom domain.
       2. Make sure your Cloudflare Pages project is setup.
-      3. Make sure to add an entry to .github/workflows/publish.yml so that the project gets deployed.
+      3. Make sure to add an entry to sites.json
       4. Consider customizing your resume for this application specifically.
       `);
       Logger.info("========================================");

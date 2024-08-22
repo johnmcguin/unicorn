@@ -55,10 +55,16 @@ Taking all this in mind, it will make sense to customize the template project wi
 
 If needed, consult the CLI help docs with:
 
-After you've run the script, be sure to follow the instructions at the end of the CLI. Notably, ensure adding your project to Cloudflare Pages and adding the deployment job to the GitHubAction workflow at `.github/workflows/publish.yml`.
-
 ```bash
 npm run new -- --help
+```
+
+After you've run the script, be sure to follow the instructions at the end of the CLI. Notably, ensure adding your project to Cloudflare Pages and adding the site configuration entry in `sites.json`. For these entries, the key should be the name of the package in the repo (the directory name of the site). The value should be the name of the project within Cloudflare Pages. For example, given a site living at `sites/my-site` and a corresponding Cloudflare Pages project given the name `my-cf-site`, the corresponding entry should be:
+
+```json
+{
+  "my-site": "my-cf-site"
+}
 ```
 
 ## Deployment
