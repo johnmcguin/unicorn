@@ -29,10 +29,6 @@ jobs:
               - 'packages/**'
         uses: dorny/paths-filter@v3
 
-      - name: Debug paths-filter
-        run: |
-          echo "sites files changed: ${{ steps.changes.outputs.sites_files }}"
-
       - name: Transform Sites Changed
         id: transformed-changes
         run: |
