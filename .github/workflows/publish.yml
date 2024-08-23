@@ -43,7 +43,6 @@ jobs:
           echo "SITES_CHANGED=${unique_sites[@]}" >> $GITHUB_ENV
 
       - name: Build Dynamic Matrix
-        if: ${{ steps.changes.outputs.sites }}
         id: matrix
         run: |
           if [[ ${{ steps.changes.outputs.packages }} == true ]] || [[ ${{ steps.changes.outputs.deps }} == true ]]; then
