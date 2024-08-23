@@ -44,10 +44,10 @@ where `unicorn-demo` is the name of the site you're targeting.
 There is a utility script for doing most of the work for creating a new website. It can be found and edited at `/scripts/new_site.mjs`. It is designed for my own use but is heavily commented and should be able to be adapted for your use if needed. Run the script with:
 
 ```bash
-npm run new -- --dir google -c Google -j "Senior Software Engineer (Fullstack)"
+npm run new -- -d google -c Google -j "Senior Software Engineer (Fullstack)"
 ```
 
-- Where --dir is the name of the directory where the project will live in the monorepo. The script will copy the template directory into the directory that you pass in here.
+- Where -d is the name of the directory where the project will live in the monorepo. The script will copy the template directory into the directory that you pass in here.
 - And -c is the company name of the company you're applying to. The script will find and replace references to "Company", a generic placeholder that the template project uses, to the value you pass in here.
 - and where -j is the job title you are applying for. The script will find and replace references to "Job Title", a generic placeholder that the template project uses, to the value you pass in here.
 
