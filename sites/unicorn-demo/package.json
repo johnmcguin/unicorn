@@ -21,7 +21,7 @@
     "@unocss/transformer-directives": "^0.63.4",
     "markdown-it": "^14.0.0",
     "sanitize-html": "^2.13.1",
-    "@iconify-json/mdi": "^1.1.64"
+    "@iconify-json/mdi": "^1.2.1"
   },
   "devDependencies": {
     "typescript": "^5.6.3",
