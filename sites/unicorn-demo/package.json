@@ -16,9 +16,9 @@
     "astro": "^4.8.6",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.3",
-    "unocss": "^0.60.2",
-    "@unocss/reset": "^0.60.2",
-    "@unocss/transformer-directives": "^0.60.2",
+    "unocss": "^0.63.4",
+    "@unocss/reset": "^0.63.4",
+    "@unocss/transformer-directives": "^0.63.4",
     "markdown-it": "^14.0.0",
     "sanitize-html": "^2.11.0",
     "@iconify-json/mdi": "^1.1.64"
