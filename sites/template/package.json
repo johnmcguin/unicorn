@@ -20,7 +20,7 @@
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.3",
     "markdown-it": "^14.0.0",
-    "sanitize-html": "^2.11.0",
+    "sanitize-html": "^2.13.1",
     "unocss": "^0.63.4"
   },
   "devDependencies": {
