@@ -21,7 +21,7 @@
     "astro-seo": "^0.8.3",
     "markdown-it": "^14.0.0",
     "sanitize-html": "^2.11.0",
-    "unocss": "^0.60.2"
+    "unocss": "^0.63.4"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.1",
