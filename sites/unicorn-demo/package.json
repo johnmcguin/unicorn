@@ -28,6 +28,6 @@
     "vite": "^5.4.9",
     "@types/markdown-it": "^14.1.1",
     "@types/node": "^22.7.5",
-    "@types/sanitize-html": "^2.9.5"
+    "@types/sanitize-html": "^2.13.0"
   }
 }
